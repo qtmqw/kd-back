@@ -109,7 +109,7 @@ app.post("/forgot-password", async (req, res) => {
         const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
             expiresIn: "5m",
         });
-        const link = `http://localhost:8080/reset-password/${oldUser._id}/${token}`;
+        const link = `https://kd-back.onrender.com/reset-password/${oldUser._id}/${token}`;
         var transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -120,7 +120,7 @@ app.post("/forgot-password", async (req, res) => {
 
         var mailOptions = {
             from: "Abika.reset.password.com",
-            to: "maikls303@gmail.com",
+            to: email,
             subject: "Password Reset",
             text: link,
         };
